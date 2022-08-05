@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 const Home = () => {
   return (
-    <div className="py-24 flex justify-center text-sm text-gray-600">
+    <div className="pb-10 flex justify-center text-sm text-gray-600">
       <table>
         <tbody>
           <tr className="product flex w-full mb-3">

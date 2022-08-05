@@ -1,6 +1,6 @@
 const Profile = () => {
   return (
-    <div className="mt-40 flex justify-center text-sm text-gray-600">
+    <div className="flex justify-center text-sm text-gray-600">
       <table className="border-separate border-spacing-3">
         <tbody>
           <tr>
