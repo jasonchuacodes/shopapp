@@ -4,7 +4,7 @@ const Orders = () => {
       <table>
         <tbody>
           <tr className="product flex w-full mb-3">
-            <div className=" ">
+            <td className=" ">
               <div className="flex justify-center">
                 <img
                   className="h-24 w-24 object-cover rounded-lg"
@@ -21,8 +21,8 @@ const Orders = () => {
                   -
                 </button>
               </div>
-            </div>
-            <div className="product-description ml-6 text-xs">
+            </td>
+            <td className="product-description ml-6 text-xs">
               <div className="font-bold">IPhone 12</div>
               <ul className="font-light mt-2">
                 <li>256GB</li>
@@ -30,7 +30,7 @@ const Orders = () => {
                 <li>brand new</li>
               </ul>
               <div className="mt-4 flex justify-end">$3.00</div>
-            </div>
+            </td>
           </tr>
         </tbody>
       </table>
