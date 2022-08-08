@@ -22,6 +22,7 @@ const Navbar = () => {
             </div>
             <div className="">SHOP</div>
           </div>
+          
         </Link>
         <div className="flex">
           <Link className="" to="/cart">
