@@ -48,6 +48,7 @@ const LoginForm = () => {
                 >
                   REGISTER
                 </button>
+                
               </div>
             </div>
           </div>
