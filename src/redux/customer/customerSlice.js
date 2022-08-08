@@ -5,8 +5,8 @@ const initialState = {
   customer: {},
 };
 
-export const fetchCustomer = createAsyncThunk('customer', async () => {
-  const res = await customersAPI.fetchCustomer(2);
+export const fetchCustomer = createAsyncThunk('customer', async (id) => {
+  const res = await customersAPI.fetchCustomer(id);
   return res.data;
 });
 

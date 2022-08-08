@@ -12,7 +12,7 @@ const Profile = () => {
       setUser(res.payload);
     });
   }, []);
-  
+
   return (
     <div className="flex justify-center text-sm text-gray-600">
       <table className="border-separate border-spacing-3">
