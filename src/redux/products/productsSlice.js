@@ -3,6 +3,7 @@ import productsAPI from '../../api/productsAPI';
 
 const initialState = {
   products: [],
+  count: 0,
 };
 
 export const fetchProducts = createAsyncThunk(

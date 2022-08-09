@@ -17,6 +17,26 @@ const Home = () => {
     });
   }, [dispatch]);
 
+  const handleDecrement = (product_id) => {
+    setProducts((products) =>
+      products.map((item) =>
+        (product_id === item.id && item.product_qty > 0)
+          ? { ...item, product_qty: item.product_qty - 1 }
+          : item
+      )
+    );
+  };
+
+  const handleIncrement = (product_id) => {
+    setProducts((products) =>
+      products.map((item) =>
+        product_id === item.id
+          ? { ...item, product_qty: item.product_qty + 1 }
+          : item
+      )
+    );
+  };
+
   return (
     <div className="pb-10 flex justify-center text-sm text-gray-600">
       <div>
@@ -27,20 +47,21 @@ const Home = () => {
                 <Fragment key={product.id}>
                   <tr className="flex w-full mb-3">
                     <td className="">
-                      <div className="flex justify-center">
+                      <div className="h-24 w-24 flex justify-center">
                         <img
-                          className="h-24 w-24 object-cover rounded-lg"
+                          className="object-cover"
                           src={`${product.product_image}`}
                           alt="Product"
                         />
                       </div>
-                      <div className="flex items-center">
-                        <button>
-                          <CirclePlus colorName="blue" width="20" height="20" />
-                        </button>
-                        <div className="mx-2">{10}</div>
-                        <button>
+                      <div className="flex items-center justify-center">
+                        <button onClick={() => handleDecrement(product.id)}>
                           <CircleMinus colorName="red" width="20" height="20" />
+                        </button>
+                        <div className="px-2">{product.product_qty}</div>
+
+                        <button onClick={() => handleIncrement(product.id)}>
+                          <CirclePlus colorName="blue" width="20" height="20" />
                         </button>
                       </div>
                     </td>

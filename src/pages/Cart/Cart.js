@@ -16,7 +16,7 @@ const Cart = () => {
                 <button className="flex text-center items-center justify-center h-4 w-4 rounded-full bg-blue-400">
                   +
                 </button>
-                <div className="mx-2">{10}</div>
+                <div className="mx-2">{1}</div>
                 <button className="flex text-center items-center justify-center h-4 w-4 rounded-full bg-red-400">
                   -
                 </button>
