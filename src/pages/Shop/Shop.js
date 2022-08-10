@@ -1,27 +1,32 @@
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
+
 import { fetchProducts } from '../../redux/products/productsSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 import CircleMinus from '../../shared/icons/CircleMinusIcon';
 import CirclePlus from '../../shared/icons/CirclePlusIcon';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [initialProducts, setInitialProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     dispatch(fetchProducts()).then((res) => {
+      setInitialProducts(res.payload);
       setProducts(res.payload);
     });
-  }, [dispatch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDecrement = (product_id) => {
     setProducts((products) =>
       products.map((item) =>
         (product_id === item.id && item.product_qty > 0)
-          ? { ...item, product_qty: item.product_qty - 1 }
+          ? { ...item, product_qty: (item.product_qty - 1) || 0 }
           : item
       )
     );
@@ -31,11 +36,17 @@ const Home = () => {
     setProducts((products) =>
       products.map((item) =>
         product_id === item.id
-          ? { ...item, product_qty: item.product_qty + 1 }
+          ? { ...item, product_qty: (item.product_qty + 1) || 1}
           : item
       )
     );
   };
+
+  const handleAddToCart = () => {
+    console.log(products);
+    Cookies.set('products', products.payload)
+    setProducts(initialProducts);
+  }
 
   return (
     <div className="pb-10 flex justify-center text-sm text-gray-600">
@@ -58,7 +69,7 @@ const Home = () => {
                         <button onClick={() => handleDecrement(product.id)}>
                           <CircleMinus colorName="red" width="20" height="20" />
                         </button>
-                        <div className="px-2">{product.product_qty}</div>
+                        <div className="px-2">{product.product_qty ?? 0}</div>
 
                         <button onClick={() => handleIncrement(product.id)}>
                           <CirclePlus colorName="blue" width="20" height="20" />
@@ -86,7 +97,7 @@ const Home = () => {
               Go to Cart
             </div>
           </Link>
-          <button className="p-2 border-1 rounded-lg bg-blue-200 text-blue-800">
+          <button onClick={handleAddToCart} className="p-2 border-1 rounded-lg bg-blue-200 text-blue-800">
             ADD TO CART
           </button>
         </div>

@@ -1,13 +1,13 @@
 import instance from './instance';
 
-const customersAPI = {
-  fetchCustomer: (id) => {
+const cartItemAPI = {
+  fecthCartItem: (id) => {
     const options = {
       method: 'GET',
-      url: `customers/${id}`,
+      url: `cart-item/${id}`,
     };
 
     return instance.request(options);
   },
 };
-export default customersAPI;
+export default cartItemAPI;

@@ -1,4 +1,4 @@
-import instance from './base';
+import instance from './instance';
 
 const productsAPI = {
   fetchProducts: (params) => {
