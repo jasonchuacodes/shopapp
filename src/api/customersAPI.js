@@ -9,5 +9,17 @@ const customersAPI = {
 
     return instance.request(options);
   },
+
+  registerCustomer: (params) => {
+    const options = {
+      method: 'POST',
+      url: `customers/register`,
+      params: {
+        ...params
+      }
+    };
+
+    return instance.request(options);
+  }
 };
 export default customersAPI;

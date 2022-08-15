@@ -2,8 +2,12 @@ import { Link, Outlet } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateIsOpen } from '../redux/dropdown/dropdownSlice';
+import CartContext from '../CartContext';
+import { useContext } from 'react';
 
 const Navbar = () => {
+  const {cartItemCount} = useContext(CartContext);
+
   const dispatch = useDispatch();
 
   const isOpen = useSelector((state) => state.dropdown.isOpen);
@@ -32,7 +36,7 @@ const Navbar = () => {
             >
               CART
               <span className="block absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 bg-blue-400 px-1.5 rounded-full">
-                2
+                {cartItemCount}
               </span>
             </button>
           </Link>

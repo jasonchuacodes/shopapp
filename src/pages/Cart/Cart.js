@@ -9,7 +9,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const [cartItem, setCartItem] = useState([]);
-  const [totalPrice, setTotalPrice] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     dispatch(fetchCartItem(1)).then((res) => {
@@ -19,8 +19,8 @@ const Cart = () => {
 
   useEffect(() => {
     setTotalPrice(
-      cartItem.reduce((total, item) => {
-        return total + item.product.price;
+      cartItem.reduce((acc, obj) => {
+        return acc + (obj.product.price * obj.product_qty);
       }, 0)
     );
   }, [cartItem]);
@@ -29,41 +29,49 @@ const Cart = () => {
     <div className="flex justify-center text-sm text-gray-600">
       <table>
         <tbody>
-          {cartItem?.map((item) => {
-            return (
-              <Fragment key={item.product.id}>
-                <tr className="flex w-full mb-3">
-                  <td className="">
-                    <div className="h-24 w-24 flex justify-center">
-                      <img
-                        className="object-cover"
-                        src={`${item.product.product_image}`}
-                        alt="Product"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <button>
-                        <CircleMinus colorName="red" width="20" height="20" />
-                      </button>
-                      <div className="px-2">{item.product_qty}</div>
-                      <button>
-                        <CirclePlus colorName="blue" width="20" height="20" />
-                      </button>
-                    </div>
-                  </td>
-                  <td className="w-full product-description ml-6 text-xs">
-                    <div className="font-bold">{item.product.name}</div>
-                    <div className="font-light mt-2">
-                      {item.product.description}
-                    </div>
-                    <div className="mt-4 flex justify-end">
-                      ${item.product.price}
-                    </div>
-                  </td>
-                </tr>
-              </Fragment>
-            );
-          })}
+          {cartItem.length === 0 ? (
+            <tr>
+              <td>
+                <h2>There is no item in cart. </h2>
+              </td>
+            </tr>
+          ) : (
+            cartItem.map((item) => {
+              return (
+                <Fragment key={item.product.id}>
+                  <tr className="flex w-full mb-3">
+                    <td className="">
+                      <div className="h-24 w-24 flex justify-center">
+                        <img
+                          className="object-cover"
+                          src={`${item.product.product_image}`}
+                          alt="Product"
+                        />
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <button>
+                          <CircleMinus colorName="red" width="20" height="20" />
+                        </button>
+                        <div className="px-2">{item.product_qty}</div>
+                        <button>
+                          <CirclePlus colorName="blue" width="20" height="20" />
+                        </button>
+                      </div>
+                    </td>
+                    <td className="w-full product-description ml-6 text-xs">
+                      <div className="font-bold">{item.product.name}</div>
+                      <div className="font-light mt-2">
+                        {item.product.description}
+                      </div>
+                      <div className="mt-4 flex justify-end">
+                        ${item.product.price * item.product_qty}
+                      </div>
+                    </td>
+                  </tr>
+                </Fragment>
+              );
+            })
+          )}
         </tbody>
         <tbody>
           <tr className="flex justify-end mt-3">

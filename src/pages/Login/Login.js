@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const LoginForm = () => {
   return (
     <div className="container mx-auto px-16 text-gray-600">
@@ -42,12 +44,12 @@ const LoginForm = () => {
                 </button>
               </div>
               <div className="flex justify-center mt-2">
-                <button
-                  type="submit"
+                <Link
+                  to="/register"
                   class="text-sm text-gray-600 text-blue border-2 border-gray-300 rounded font-bold px-4 "
                 >
                   REGISTER
-                </button>
+                </Link>
                 
               </div>
             </div>

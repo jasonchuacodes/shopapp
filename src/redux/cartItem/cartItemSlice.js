@@ -5,10 +5,20 @@ const initialState = {
   cartItem: [],
 };
 
-export const fetchCartItem = createAsyncThunk('cartItem', async (id) => {
-  const res = await cartItemAPI.fecthCartItem(id);
+export const fetchCartItem = createAsyncThunk('cartItem/fetchById', 
+async (id) => {
+  const res = await cartItemAPI.fetchCartItem(id);
   return res.data;
 });
+
+export const addCartItem = createAsyncThunk(
+  'cratItem/addItem',
+  async (params) => 
+  {
+    const res = await cartItemAPI.addCartItem(params);
+    return res.data;
+  }
+)
 
 const fetchCartItemSlice = createSlice({
   name: 'cartItem',
